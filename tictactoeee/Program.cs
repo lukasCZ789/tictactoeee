@@ -20,24 +20,29 @@ namespace tictactoeee
             bool RobotVyhral = false;
             bool HracVyhral = false;
             bool JeKonec = false;
+            
 
             PrintBoard(); // Vykreslí hrací pole
+           
+            
+            
             while (true)
             {
                 Hrac();
                 PrintBoard(); // Vykreslí hrací pole
+                
 
                 if (JePlna()) // Pokud je deska plná
                 {
                     Console.WriteLine("Hra je remíza, protože není volné místo!");
                     break;
                 }
-                if (HracVyhral == true)
+                if (HracVyhral == true)//HracVyhral?
                 {
                     Console.WriteLine("Hráč vyhrál!!!");
                     break;
                 }
-                if (RobotVyhral == true)
+                if (RobotVyhral == true)//RobotVyhral?
                 {
                     Console.WriteLine("Hráč vyhrál!!!");
                     break;
@@ -48,7 +53,17 @@ namespace tictactoeee
             Console.ReadKey();
         } 
 
-        static void PrintBoard()
+
+
+
+
+
+
+
+
+
+
+        static void PrintBoard() // Vykreslovani hracího pole
         {
             Console.WriteLine("  0 1 2");
 
@@ -80,7 +95,14 @@ namespace tictactoeee
             Console.ReadKey();
         }
 
-        static void Hrac()
+
+
+
+
+
+
+
+        static void Hrac()// hrac 
         {
             Console.WriteLine("Napiš řádek kam chces polozit");
             int RadekHrac = int.Parse(Console.ReadLine());
@@ -97,28 +119,71 @@ namespace tictactoeee
             {
                 Console.WriteLine("Toto místo už je obsazeno, zvol jiný.");
                 Console.WriteLine();
-                Hrac(); // Opakuj tah, pokud místo je obsazené
+                Hrac(); // Opakuj tah
             }
 
         }
-        static void StavHry()
+
+
+
+
+
+        static void JeVyhra(bool HracVyhral, bool RobotVyhral) // kontrola vyhry
         {
+            //Kontrola radku
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[i, 0] == 'X' && board[i, 1] == 'X' && board[i, 2] == 'X')
+                {
+                    HracVyhral = true; 
+                }
+                if (board[i, 0] == 'O' && board[i, 1] == 'O' && board[i, 2] == 'O')
+                {
+                    RobotVyhral = true; 
+                }
+            }
+            //Kontrola slopcu
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[0, i] == 'X' && board[1, i] == 'X' && board[2, i] == 'X')
+                {
+                    HracVyhral = true; 
+                }
+                if (board[0, i] == 'O' && board[1, i] == 'O' && board[2, i] == 'O')
+                {
+                    RobotVyhral = true; 
+                }
+
+            }
+            if(board[0, 0] == 'X' && board[1, 1] == 'X' && board[2, 2] == 'X')
+    {
+                HracVyhral = true; // Nastaví, že hráč vyhrál
+            }
+            if (board[0, 2] == 'X' && board[1, 1] == 'X' && board[2, 0] == 'X')
+            {
+                HracVyhral = true; // Nastaví, že hráč vyhrál
+            }
+
+            if (board[0, 0] == 'O' && board[1, 1] == 'O' && board[2, 2] == 'O')
+            {
+                RobotVyhral = true; // Nastaví, že robot vyhrál
+            }
+            if (board[0, 2] == 'O' && board[1, 1] == 'O' && board[2, 0] == 'O')
+            {
+                RobotVyhral = true; // Nastaví, že robot vyhrál
+            }
+
 
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        static bool JePlna()
+
+
+
+
+
+
+
+
+            static bool JePlna()// kontrola jestli neni tabulka plna
         {
             
             for (int i = 0; i < 3; i++)
