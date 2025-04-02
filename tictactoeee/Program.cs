@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 
 namespace tictactoeee
 {
@@ -18,15 +19,34 @@ namespace tictactoeee
 
             bool RobotVyhral = false;
             bool HracVyhral = false;
+            bool JeKonec = false;
 
             PrintBoard(); // Vykreslí hrací pole
             while (true)
             {
                 Hrac();
                 PrintBoard(); // Vykreslí hrací pole
-            if 
+
+                if (JePlna()) // Pokud je deska plná
+                {
+                    Console.WriteLine("Hra je remíza, protože není volné místo!");
+                    break;
+                }
+                if (HracVyhral == true)
+                {
+                    Console.WriteLine("Hráč vyhrál!!!");
+                    break;
+                }
+                if (RobotVyhral == true)
+                {
+                    Console.WriteLine("Hráč vyhrál!!!");
+                    break;
+                }
+
+
             }
-        }
+            Console.ReadKey();
+        } 
 
         static void PrintBoard()
         {
@@ -48,7 +68,7 @@ namespace tictactoeee
                 Console.Write(board[1, j]);
                 if (j < 2) Console.Write("|");
             }
-            Console.WriteLine(); 
+            Console.WriteLine();
             // tretí řádek
             Console.Write("2 ");
             for (int j = 0; j < 3; j++)
@@ -63,12 +83,55 @@ namespace tictactoeee
         static void Hrac()
         {
             Console.WriteLine("Napiš řádek kam chces polozit");
-            int RadekHrac  = int.Parse(Console.ReadLine());
+            int RadekHrac = int.Parse(Console.ReadLine());
             Console.WriteLine("Napiš sloupec kam chces polozit");
             int SloupecHrac = int.Parse(Console.ReadLine());
+            Console.WriteLine();
 
-            board[RadekHrac, SloupecHrac] = 'X';
+            
+            if (board[RadekHrac, SloupecHrac] == ' ') 
+            {
+                board[RadekHrac, SloupecHrac] = 'X';
+            }
+            else
+            {
+                Console.WriteLine("Toto místo už je obsazeno, zvol jiný.");
+                Console.WriteLine();
+                Hrac(); // Opakuj tah, pokud místo je obsazené
+            }
 
+        }
+        static void StavHry()
+        {
+
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        static bool JePlna()
+        {
+            
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                   
+                    if (board[i, j] == ' ')
+                        return false;
+                }
+            }
+            
+            return true;
         }
     }
 }
