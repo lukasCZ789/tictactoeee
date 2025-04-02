@@ -1,0 +1,15 @@
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\bin\Debug\net8.0\tictactoeee.exe
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\bin\Debug\net8.0\tictactoeee.deps.json
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\bin\Debug\net8.0\tictactoeee.runtimeconfig.json
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\bin\Debug\net8.0\tictactoeee.dll
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\bin\Debug\net8.0\tictactoeee.pdb
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\tictactoeee.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\tictactoeee.AssemblyInfoInputs.cache
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\tictactoeee.AssemblyInfo.cs
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\tictactoeee.csproj.CoreCompileInputs.cache
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\tictactoeee.sourcelink.json
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\tictactoeee.dll
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\refint\tictactoeee.dll
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\tictactoeee.pdb
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\tictactoeee.genruntimeconfig.cache
+C:\Users\lukyc\source\repos\tictactoeee\tictactoeee\obj\Debug\net8.0\ref\tictactoeee.dll
