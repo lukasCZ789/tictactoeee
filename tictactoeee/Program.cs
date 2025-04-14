@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Security.Cryptography;
 
 namespace tictactoeee
@@ -48,6 +49,25 @@ namespace tictactoeee
                     Console.WriteLine("Hráč vyhrál!!!");
                     break;
                 }
+                Pocitac();
+                PrintBoard();
+
+                if (JePlna()) // Pokud je deska plná
+                {
+                    Console.WriteLine("Hra je remíza, protože není volné místo!");
+                    break;
+                }
+                if (HracVyhral == true)//HracVyhral?
+                {
+                    Console.WriteLine("Hráč vyhrál!!!");
+                    break;
+                }
+                if (RobotVyhral == true)//RobotVyhral?
+                {
+                    Console.WriteLine("Hráč vyhrál!!!");
+                    break;
+                }
+
 
 
             }
@@ -102,9 +122,119 @@ namespace tictactoeee
                 if (j < 3) Console.Write("|");
             }
             Console.WriteLine();
-            Console.ReadKey();
+          
         }
 
+        static void Pocitac()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                for(int j = 0;j<= 1; j++)
+                {
+                    if (board[i, j] == 'X' && board[i, j+1] == 'X' && board[i,j+2] =='X' && board[i,j+3] == ' ')
+                    {
+                        board[i, j + 3] = 'O';
+                        return;
+                    }
+                    if (board[i, j] == 'X' && board[i, j + 1] == 'X' && board[i, j + 2] == ' ' && board[i, j + 3] == 'X')
+                    {
+                        board[i, j + 2] = 'O';
+                        return;
+                    }
+                    if (board[i, j] == 'X' && board[i, j + 1] == ' ' && board[i, j + 2] == 'X' && board[i, j + 3] == 'X')
+                    {
+                        board[i, j + 1] = 'O';
+                        return;
+                    }
+                    if (board[i, j] == ' ' && board[i, j + 1] == 'X' && board[i, j + 2] == 'X' && board[i, j + 3] == 'X')
+                    {
+                        board[i, j] = 'O';
+                        return;
+                    }
+                }
+            }
+            // 2. (svisle)
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 0; i <= 0; i++)
+                {
+                    if (board[i, j] == 'X' && board[i + 1, j] == 'X' && board[i + 2, j] == 'X' && board[i + 3, j] == ' ')
+                    {
+                        board[i + 3, j] = 'O'; return;
+                    }
+                    if (board[i, j] == 'X' && board[i + 1, j] == 'X' && board[i + 2, j] == ' ' && board[i + 3, j] == 'X')
+                    {
+                        board[i + 2, j] = 'O'; return;
+                    }
+                    if (board[i, j] == 'X' && board[i + 1, j] == ' ' && board[i + 2, j] == 'X' && board[i + 3, j] == 'X')
+                    {
+                        board[i + 1, j] = 'O'; return;
+                    }
+                    if (board[i, j] == ' ' && board[i + 1, j] == 'X' && board[i + 2, j] == 'X' && board[i + 3, j] == 'X')
+                    {
+                        board[i, j] = 'O'; return;
+                    }
+                }
+            }
+            for (int i = 0; i <= 0; i++)
+            {
+                for (int j = 0; j <= 0; j++)
+                {
+                    if (board[i, j] == 'X' && board[i + 1, j + 1] == 'X' && board[i + 2, j + 2] == 'X' && board[i + 3, j + 3] == ' ')
+                    {
+                        board[i + 3, j + 3] = 'O'; return;
+                    }
+                    if (board[i, j] == 'X' && board[i + 1, j + 1] == 'X' && board[i + 2, j + 2] == ' ' && board[i + 3, j + 3] == 'X')
+                    {
+                        board[i + 2, j + 2] = 'O'; return;
+                    }
+                    if (board[i, j] == 'X' && board[i + 1, j + 1] == ' ' && board[i + 2, j + 2] == 'X' && board[i + 3, j + 3] == 'X')
+                    {
+                        board[i + 1, j + 1] = 'O'; return;
+                    }
+                    if (board[i, j] == ' ' && board[i + 1, j + 1] == 'X' && board[i + 2, j + 2] == 'X' && board[i + 3, j + 3] == 'X')
+                    {
+                        board[i, j] = 'O'; return;
+                    }
+                }
+            }
+
+            // 4. Vedlejší diagonála (↙)
+            for (int i = 0; i <= 0; i++)
+            {
+                for (int j = 3; j >= 3; j--)
+                {
+                    if (board[i, j] == 'X' && board[i + 1, j - 1] == 'X' && board[i + 2, j - 2] == 'X' && board[i + 3, j - 3] == ' ')
+                    {
+                        board[i + 3, j - 3] = 'O'; return;
+                    }
+                    if (board[i, j] == 'X' && board[i + 1, j - 1] == 'X' && board[i + 2, j - 2] == ' ' && board[i + 3, j - 3] == 'X')
+                    {
+                        board[i + 2, j - 2] = 'O'; return;
+                    }
+                    if (board[i, j] == 'X' && board[i + 1, j - 1] == ' ' && board[i + 2, j - 2] == 'X' && board[i + 3, j - 3] == 'X')
+                    {
+                        board[i + 1, j - 1] = 'O'; return;
+                    }
+                    if (board[i, j] == ' ' && board[i + 1, j - 1] == 'X' && board[i + 2, j - 2] == 'X' && board[i + 3, j - 3] == 'X')
+                    {
+                        board[i, j] = 'O'; return;
+                    }
+                }
+            }
+            Random rnd = new Random();
+            while (true)
+            {
+                int x = rnd.Next(0, 4);
+                int y = rnd.Next(0, 4);
+                if (board[x, y] == ' ')
+                {
+                    board[x, y] = 'O';
+                    return;
+                }
+            }
+        
+    }
 
 
 
