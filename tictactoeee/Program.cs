@@ -128,32 +128,41 @@ namespace tictactoeee
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    for (int j = 0; j <= 1; j++)
+                    for (int j = 0; j < 2; j++) 
                     {
-                        if (board[i, j] == 'X' && board[i, j + 1] == 'X' && board[i, j + 2] == 'X' && board[i, j + 3] == ' ')
+                        
+                        if (j + 3 < 4)  
                         {
-                            board[i, j + 3] = 'O';
-                            return;
-                        }
-                        if (board[i, j] == 'X' && board[i, j + 1] == 'X' && board[i, j + 2] == ' ' && board[i, j + 3] == 'X')
-                        {
-                            board[i, j + 2] = 'O';
-                            return;
-                        }
-                        if (board[i, j] == 'X' && board[i, j + 1] == ' ' && board[i, j + 2] == 'X' && board[i, j + 3] == 'X')
-                        {
-                            board[i, j + 1] = 'O';
-                            return;
-                        }
-                        if (board[i, j] == ' ' && board[i, j + 1] == 'X' && board[i, j + 2] == 'X' && board[i, j + 3] == 'X')
-                        {
-                            board[i, j] = 'O';
-                            return;
+                            if (board[i, j] == 'X' && board[i, j + 1] == 'X' && board[i, j + 2] == 'X' && board[i, j + 3] == ' ')
+                            {
+                                board[i, j + 3] = 'O';
+                                return;
+                            }
+                            if (board[i, j] == 'X' && board[i, j + 1] == 'X' && board[i, j + 2] == ' ' && board[i, j + 3] == 'X')
+                            {
+                                board[i, j + 2] = 'O';
+                                return;
+                            }
+                            if (board[i, j] == 'X' && board[i, j + 1] == ' ' && board[i, j + 2] == 'X' && board[i, j + 3] == 'X')
+                            {
+                                board[i, j + 1] = 'O';
+                                return;
+                            }
+                            if (board[i, j] == ' ' && board[i, j + 1] == 'X' && board[i, j + 2] == 'X' && board[i, j + 3] == 'X')
+                            {
+                                board[i, j] = 'O';
+                                return;
+                            }
                         }
                     }
                 }
-                // 2. (svisle)
-                for (int j = 0; j < 4; j++)
+            
+
+
+
+
+            // 2. (svisle)
+            for (int j = 0; j < 4; j++)
                 {
                     for (int i = 0; i <= 0; i++)
                     {
@@ -241,27 +250,43 @@ namespace tictactoeee
 
 
 
-            static void Hrac()// hrac 
+            static void Hrac()
             {
-                Console.WriteLine("Napiš řádek kam chces polozit");
-                int RadekHrac = int.Parse(Console.ReadLine());
-                Console.WriteLine("Napiš sloupec kam chces polozit");
-                int SloupecHrac = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                int RadekHrac, SloupecHrac;
 
-
-                if (board[RadekHrac, SloupecHrac] == ' ')
+                while (true)
                 {
-                    board[RadekHrac, SloupecHrac] = 'X';
-                }
-                else
-                {
-                    Console.WriteLine("Toto místo už je obsazeno, zvol jiný.");
-                    Console.WriteLine();
-                    Hrac(); // Opakuj tah
-                }
+                    try
+                    {
+                        Console.WriteLine("Napiš řádek (0-3), kam chceš položit:");
+                        RadekHrac = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Napiš sloupec (0-3), kam chceš položit:");
+                        SloupecHrac = int.Parse(Console.ReadLine());
 
+                        if (RadekHrac < 0 || RadekHrac > 3 || SloupecHrac < 0 || SloupecHrac > 3)
+                        {
+                            Console.WriteLine("Zadané souřadnice jsou mimo hrací pole. Zkus to znovu.");
+                            Console.WriteLine();
+                            continue;
+                        }
+
+                        if (board[RadekHrac, SloupecHrac] != ' ')
+                        {
+                            Console.WriteLine("Toto místo už je obsazeno, zvol jiné.");
+                            Console.WriteLine();
+                            continue;
+                        }
+
+                        board[RadekHrac, SloupecHrac] = 'X';
+                        break;
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Zadej platné číslo!");
+                    }
+                }
             }
+
 
 
 
@@ -330,3 +355,5 @@ namespace tictactoeee
         }
     }
 }
+
+
